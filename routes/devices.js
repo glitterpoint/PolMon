@@ -17,7 +17,6 @@ var config = {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-
     sql.connect(config, function(err){
         if(err) console.log(err);
         console.log('connected to db...');
@@ -57,6 +56,8 @@ router.post('/', function(req, res, next){
     });
    // res.send('POST RECEIVED...' + req.body[0].DeviceId);
 });
+
+
 
 // export the module...
 module.exports = router;
