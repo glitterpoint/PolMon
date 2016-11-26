@@ -20,7 +20,8 @@ router.get('/', function(req, res, next) {
     sql.connect(config, function(err){
         if(err) console.log(err);
         console.log('connected to db...');
-
+        // res.set('Content-Type', 'application/json');
+        res.setHeader("Content-Type", "application/json");
         var request = new sql.Request();
         request.query('select * from device', function(err, recordset){
            if(err) console.log(err);
