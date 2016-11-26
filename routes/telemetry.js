@@ -40,27 +40,30 @@ router.get('/device/:deviceId', function(req, res, next){
 
 
 router.post('/', function(req, res, next){
-
-   sql.connect(config, function(err){
-      if(err) console.log(err);
-
-      var request = new sql.Request();
-      var sqlQuery = "insert into Telemetry(DeviceId, Name, Value, SensorTypeId, EventTypeId, CreatedOn)" +
-                     "values(@devId, @name, @value, @sensId, @eventId, GetDate())";
-
-
-      request
-          .input('devId',     sql.UniqueIdentifier,   req.body.devId)
-          .input('name',      sql.NVarChar,   req.body.name)
-          .input('value',     sql.Int,        req.body.value)
-          .input('sensId',    sql.Int,        req.body.sensId)
-          .input('eventId',   sql.Int,        req.body.eventId)
-          .query(sqlQuery,function(err, recordset){
-             if(err) console.log(err);
-             res.send('Telemetry Posted');
-             res.json(recordset);
-          });
-   });
+    res.json(req.body);
+   //
+   //
+   //
+   // sql.connect(config, function(err){
+   //    if(err) console.log(err);
+   //
+   //    var request = new sql.Request();
+   //    var sqlQuery = "insert into Telemetry(DeviceId, Name, Value, SensorTypeId, EventTypeId, CreatedOn)" +
+   //                   "values(@devId, @name, @value, @sensId, @eventId, GetDate())";
+   //
+   //
+   //    request
+   //        .input('devId',     sql.UniqueIdentifier,   req.body.devId)
+   //        .input('name',      sql.NVarChar,   req.body.name)
+   //        .input('value',     sql.Int,        req.body.value)
+   //        .input('sensId',    sql.Int,        req.body.sensId)
+   //        .input('eventId',   sql.Int,        req.body.eventId)
+   //        .query(sqlQuery,function(err, recordset){
+   //           if(err) console.log(err);
+   //           res.send('Telemetry Posted');
+   //           res.json(recordset);
+   //        });
+   // });
    // res.send('POST RECEIVED...' + req.body[0].DeviceId);
 });
 
